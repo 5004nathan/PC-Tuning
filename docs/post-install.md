@@ -243,13 +243,13 @@ C:\bin\scripts\disable-scheduled-tasks.ps1
 
 - Open CMD and enter the commands below
 
-    - Set the maximum password age to never expire. This prevents Windows periodically asking to change or enter a password despite removing it (if applicable)
+    - Set the maximum password age to never expire. This prevents Windows periodically asking to change or enter a password despite removing it (if applicable).
 
         ```bat
         net accounts /maxpwage:unlimited
         ```
 
-    - Clean the WinSxS folder
+    - Clean the WinSxS folder. Note that this command will prevent SFC and DISM commands from being able to restore corrupt files in result of stress-tests/overclocking on your (presumably [dual-boot](/docs/physical-setup.md#stability-hardware-clocking-and-thermal-performance)) system.
 
         ```bat
         DISM /Online /Cleanup-Image /StartComponentCleanup /ResetBase
@@ -261,7 +261,7 @@ C:\bin\scripts\disable-scheduled-tasks.ps1
         DISM /Online /Set-ReservedStorageState /State:Disabled
         ```
 
-    - Configure the operating system name, it is recommended to set it to whatever Windows version you are using such as ``Windows 10 1803`` for clarity when dual-booting. The partition label can also be renamed similarly for clarity
+    - Configure the operating system name. It is recommended to set it to whatever Windows version you are using such as ``Windows 10 1803`` for clarity when dual-booting. The partition label can also be renamed similarly for clarity.
 
         ```bat
         bcdedit /set {current} description "OS_NAME"
